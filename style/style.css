@@ -78,7 +78,7 @@ section .add-new-header {
 }
 
 section .add-new-header h1 {
-  color: white;
+  color: lightgray;
   font-size: 25px;
   font-family: 'Marcellus', serif;
   letter-spacing: 1px;
@@ -97,7 +97,7 @@ section .add-new-header div {
 
 section .add-new-header button {
   font-size: 25px;
-  color: white;
+  color: lightgray;
   padding: 7px 15px;
   background-color: #a055d3;
   border: none;
@@ -113,7 +113,7 @@ section .add-new-header button:hover {
 }
 
 section .add-new-header p {
-  color: white;
+  color: lightgray;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -129,7 +129,7 @@ section .add-new-header::after {
   background-color: #8d8d8d;
 }
 
-section .projects {
+.projects {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -137,17 +137,37 @@ section .projects {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 20px;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   margin: 20px auto;
-  height: 150px;
+  height: auto;
   width: 60%;
   background-color: #2e2e2e;
   border-radius: 5px;
   -webkit-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
+}
+
+.projects h1 {
+  color: lightgray;
+  font-size: 25px;
+  font-family: 'Marcellus', serif;
+  letter-spacing: 1px;
+  padding: 15px;
+}
+
+.projects div {
+  background-color: #353535;
+  padding: 20px;
+  margin: 10px;
+}
+
+.projects li {
+  color: lightgray;
+  font-family: 'Marcellus', serif;
+  letter-spacing: 1px;
+  list-style: none;
 }
 /*# sourceMappingURL=style.css.map */
