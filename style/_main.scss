@@ -1,0 +1,95 @@
+section {
+  display: flex;
+  flex-grow: 1;
+  background-color: #1d1d1d;
+  overflow-y: hidden;
+  overflow-x: hidden;
+
+  // sidebar styling
+  aside {
+    width: 250px;
+    background-color: #2e2e2e;
+  }
+
+  main {
+    flex-grow: 1;
+  }
+
+  // Header for adding new projects + everything inside the header
+  .add-new-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 20px;
+    gap: 20px;
+    margin: auto;
+    height: 150px;
+    width: 60%;
+
+    h1 {
+      color: white;
+      font-size: 25px;
+      font-family: 'Marcellus', serif;
+      letter-spacing: 1px;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      gap: 20px;
+    }
+
+    button {
+      font-size: 25px;
+      color: white;
+      padding: 7px 15px;
+      background-color: rgb(160, 85, 211);
+      border: none;
+      border-radius: 50px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    button:hover {
+      box-shadow:rgb(160, 85, 211) 1px 0 10px;
+      
+    }
+
+    p {
+      color: white;
+      align-items: center;
+      font-family: 'Marcellus', serif;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+    
+  }
+
+  // underline style border
+  .add-new-header::after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: rgb(141, 141, 141);
+    // border: 1px solid white;
+  }
+
+  // styling for each added project
+  .projects {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 20px;
+    gap: 20px;
+    margin: auto;
+    height: 150px;
+    width: 60%;
+    background-color:#2e2e2e;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+  }
+}
+
+
