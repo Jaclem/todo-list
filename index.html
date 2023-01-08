@@ -12,7 +12,7 @@
 
   </header>
 
-  <section>
+  <section class="main-content" id="main-content">
     <aside>
 
     </aside>
@@ -23,7 +23,7 @@
         <h1>Projects</h1>
         
         <div>
-          <button>&#43;</button>
+          <button class="add-btn" id="add-btn">&#43;</button>
           <p>Add New</p>
         </div>
 
@@ -48,5 +48,19 @@
 
   </section>
 
+  <div class="modal visibility">
+    <div class="form-container">
+      <form>
+        <label>Name</label>
+        <input>
+        <label>Due Date</label>
+        <input>
+        <button>&#43; add new task</button>
+        <button>Create</button> 
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="./app/index.js"></script>
 </body>
 </html>

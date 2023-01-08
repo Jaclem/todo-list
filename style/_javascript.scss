@@ -1,0 +1,77 @@
+
+// styling for each added project
+.projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 20px auto;
+  height: auto;
+  width: 60%;
+  background-color:#2e2e2e;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+
+  h1 {
+    color: rgb(211, 211, 211);
+    font-size: 25px;
+    font-family: 'Marcellus', serif;
+    letter-spacing: 1px;
+    padding: 15px;
+  }
+
+  div {
+    background-color: #353535;
+    padding: 20px;
+    margin: 10px;
+  }
+
+  li {
+    color: rgb(211, 211, 211);
+    font-family: 'Marcellus', serif;
+    letter-spacing: 1px;
+    list-style: none;
+  }
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  backdrop-filter: blur(10px);
+
+  .form-container {
+    height: 440px;
+    width: 440px;
+    background-color: #2e2e2e;
+    border-radius: 5px;
+
+    form {
+      background-color: #414141;
+      display: block;
+      height: 90%;
+      width: 90%;
+      margin: 5% auto;
+    }
+
+    label {
+      float: left;
+      color: rgb(211, 211, 211);
+      font-family: 'Marcellus', serif;
+      letter-spacing: 1px;
+    }
+
+    input {
+      float: left;
+    }
+
+    button {
+      float: left;
+    }
+  }
+
+}
