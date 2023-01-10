@@ -34,6 +34,7 @@
   }
 }
 
+// all styles related to the add-new modal
 .modal {
   display: flex;
   justify-content: center;
@@ -45,33 +46,67 @@
   backdrop-filter: blur(10px);
 
   .form-container {
-    height: 440px;
-    width: 440px;
+    height: auto;
+    width: 600px;
     background-color: #2e2e2e;
     border-radius: 5px;
 
+    .exit-modal {
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      float: right;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+
     form {
-      background-color: #414141;
-      display: block;
-      height: 90%;
-      width: 90%;
-      margin: 5% auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      border-radius: 0 0 5px 5px;
+      padding: 0 30px 30px;
     }
 
     label {
-      float: left;
       color: rgb(211, 211, 211);
       font-family: 'Marcellus', serif;
       letter-spacing: 1px;
     }
 
     input {
-      float: left;
+      width: 200px;
+      border: none;
+      height: 30px;
+      border-radius: 5px;
+      padding-left: 10px;
+    }
+
+    input[type="date"] {
+      cursor: pointer;
+    }
+
+    .task-btn {
+      width: 200px;
+    }
+
+    textarea {
+      height: 130px;
+      padding: 10px 10px;
     }
 
     button {
-      float: left;
+      color: white;
+      padding: 10px;
+      background-color: rgb(160, 85, 211);
+      border: none;
+      transition: 0.3s;
+      cursor: pointer;
     }
   }
+}
 
+.visibility {
+  display: none;
 }

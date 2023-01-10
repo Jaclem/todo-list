@@ -190,32 +190,73 @@ section .add-new-header::after {
 }
 
 .modal .form-container {
-  height: 440px;
-  width: 440px;
+  height: auto;
+  width: 600px;
   background-color: #2e2e2e;
   border-radius: 5px;
 }
 
+.modal .form-container .exit-modal {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  float: right;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
 .modal .form-container form {
-  background-color: #414141;
-  display: block;
-  height: 90%;
-  width: 90%;
-  margin: 5% auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  padding: 0 30px 30px;
 }
 
 .modal .form-container label {
-  float: left;
   color: lightgray;
   font-family: 'Marcellus', serif;
   letter-spacing: 1px;
 }
 
 .modal .form-container input {
-  float: left;
+  width: 200px;
+  border: none;
+  height: 30px;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.modal .form-container input[type="date"] {
+  cursor: pointer;
+}
+
+.modal .form-container .task-btn {
+  width: 200px;
+}
+
+.modal .form-container textarea {
+  height: 130px;
+  padding: 10px 10px;
 }
 
 .modal .form-container button {
-  float: left;
+  color: white;
+  padding: 10px;
+  background-color: #a055d3;
+  border: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.visibility {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

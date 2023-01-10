@@ -48,15 +48,19 @@
 
   </section>
 
-  <div class="modal visibility">
+  <div class="modal visibility" id="modal">
     <div class="form-container">
+      <div class="exit-modal" id="exit-modal">&#xd7;</div>
       <form>
-        <label>Name</label>
-        <input>
+        <label>Project Name</label>
+        <input id="project-name">
         <label>Due Date</label>
-        <input>
-        <button>&#43; add new task</button>
-        <button>Create</button> 
+        <input type="date" id="date">
+        <input id="task">
+        <button class="task-btn">&#43; add new task</button>
+        <label>Add a note</label>
+        <textarea></textarea>
+        <button id="create">Create</button> 
       </form>
     </div>
   </div>
