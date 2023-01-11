@@ -2,12 +2,9 @@ const app = (() => {
   const addBtn = document.getElementById('add-btn');
   const modal = document.getElementById('modal');
   const exitModal = document.getElementById('exit-modal');
-
   const createBtn = document.getElementById('create');
-
-  const projectName = document.getElementById('project-name');
-  const date = document.getElementById('date');
   const taskBtn = document.querySelector('.task-btn');
+  const ul = document.getElementById('task-list');
 
   addBtn.addEventListener('click', () => {
     modal.classList.remove('visibility');
@@ -19,8 +16,7 @@ const app = (() => {
 
   createBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    let test1 = new Project(projectName.value, date.value, task.value);
-    console.log(test1);
+    createProject();
   });
 
   taskBtn.addEventListener('click', (e) => {
@@ -29,7 +25,8 @@ const app = (() => {
   });
 
   return {
-    taskBtn
+    taskBtn,
+    ul
   }
 
 })();
@@ -40,7 +37,6 @@ function addTask() {
   const taskLabel = document.createElement('label');
   const taskInput = document.createElement('input');
   const addTask = document.createElement('button');
-  const ul = document.getElementById('task-list');
 
   taskContainer.id = 'task-container';
   taskLabel.textContent = 'New Task';
@@ -61,35 +57,45 @@ function addTask() {
     listItem.className = 'checkbox';
     listItem.textContent = taskInput.value;
     
-    ul.append(listItem);
+    app.ul.append(listItem);
     taskContainer.remove();
   });
-
-  // return {
-  //   taskContainer
-  // }
 }
 
-// const factory = (taskItems) => {
-//   const ul = document.createElement('ul');
-//   const listItem = document.createElement('li');
+function createProject() {
+  const projectName = document.getElementById('project-name');
+  const date = document.getElementById('date');
+  const note = document.getElementById('note');
+  const checkboxes = document.querySelectorAll('.checkbox');
 
-//   taskItems = taskItems;
+  let arr = [];
 
-//   addTask.taskcontainer.append(ul);
+  checkboxes.forEach(item => {
+    arr.push(item.innerHTML);
+  });
 
-// }
+  new Project(projectName.value, date.value, note.value, arr);
+}
 
 class Project {
-  constructor(name, date, task) {
+  constructor(name, date, note, tasks) {
     this.name = name;
     this.date = date;
-    this.task = task;
+    this.note = note;
+    this.tasks = tasks;
 
-    console.log(this.name, this.date, this.note);
+    console.log(this.name, this.date, this.note, this.tasks);
   }
 }
 
+const factory = (taskItems) => {
+  const ul = document.createElement('ul');
+  const listItem = document.createElement('li');
 
+  taskItems = taskItems;
+
+  addTask.taskcontainer.append(ul);
+
+}
 
 
