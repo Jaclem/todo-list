@@ -78,8 +78,8 @@ function createProject() {
   });
 
   app.modal.classList.add('visibility');
-  new Project(projectName.value, date.value, note.value, arr);
-  (new Project).addProjectToBoard();
+  const newProj = new Project(projectName.value, date.value, note.value, arr);
+  newProj.addProjectToBoard();
 }
 
 // project class that takes all information given when the createBtn is clicked
@@ -91,9 +91,8 @@ class Project {
     this.tasks = tasks;
   }
 
-  addProjectToBoard() {
+  addProjectToBoard = () => {
     factory(this.name, this.date, this.note, this.tasks);
-    console.log('working?');
   }
 }
 
@@ -114,10 +113,33 @@ const factory = (name, date, note, tasks) => {
   const header = document.createElement('h1');
   const dateText = document.createElement('p');
 
+  header.append(name);
+  dateText.append(date);
+
+  const ul = document.createElement('ul');
+
   projectContainer.className = 'projects';
   projectInfo.className = 'project-info';
   projectTodos.className = 'project-todos';
   projectNotes.className = 'project-note';
+
+  projectContainer.append(projectInfo, projectTodos, projectNotes);
+  projectInfo.append(header, dateText);
+  
+  tasks.forEach(task => {
+    const li = document.createElement('li');
+    li.append(task);
+    ul.append(li);
+  });
+  
+  projectTodos.append(ul);
+
+  const noteTag = document.createElement('p');
+
+  noteTag.append(note);
+
+  projectNotes.append(noteTag);
+
 
   projectHeader.after(projectContainer);
 
