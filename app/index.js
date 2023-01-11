@@ -7,6 +7,7 @@ const app = (() => {
   const ul = document.getElementById('task-list');
 
   addBtn.addEventListener('click', () => {
+    clearScreen();
     modal.classList.remove('visibility');
   });
 
@@ -109,12 +110,20 @@ const factory = (name, date, note, tasks) => {
   const projectTodos = document.createElement('div');  
   const projectNotes = document.createElement('div');
 
-
   const header = document.createElement('h1');
   const dateText = document.createElement('p');
 
   header.append(name);
   dateText.append(date);
+
+  const description1 = document.createElement('p');
+  const description2 = document.createElement('p');
+
+  description1.textContent = 'To-Do\'s';
+  description2.textContent = 'Notes';
+
+  description1.className = 'description';
+  description2.className = 'description';
 
   const ul = document.createElement('ul');
 
@@ -124,6 +133,8 @@ const factory = (name, date, note, tasks) => {
   projectNotes.className = 'project-note';
 
   projectContainer.append(projectInfo, projectTodos, projectNotes);
+  projectInfo.after(description1);
+  projectTodos.after(description2);
   projectInfo.append(header, dateText);
   
   tasks.forEach(task => {
@@ -142,7 +153,21 @@ const factory = (name, date, note, tasks) => {
 
 
   projectHeader.after(projectContainer);
-
 }
 
+// Clears the add project form from previously entered data
+function clearScreen() {
+  const projectName = document.getElementById('project-name');
+  const date = document.getElementById('date');
+  const taskList = document.querySelectorAll('.checkbox');
+  const noteMessage = document.getElementById('note');
 
+  projectName.value = '';
+  date.value = '';
+
+  taskList.forEach(task => {
+    task.remove();
+  });
+
+  noteMessage.value = '';
+}

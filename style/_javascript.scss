@@ -20,6 +20,13 @@
     padding: 15px;
   }
 
+  .description {
+    color: rgb(211, 211, 211);
+    font-family: 'Marcellus', serif;
+    letter-spacing: 1px;
+    padding-left: 15px;
+  }
+
   .project-info {
     display: flex;
     justify-content: space-between;
@@ -88,7 +95,6 @@
       border-radius: 0 0 5px 5px;
       padding: 0 30px 30px;
     }
-
 
     label {
       color: rgb(211, 211, 211);

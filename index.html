@@ -34,7 +34,9 @@
           <h1>Header</h1>
           <p>2023-18-12</p>
         </div>
-        
+
+        <p class="description">Things To Do</p>
+
         <div class="project-todos">
           <ul>
             <li>Text</li>
@@ -42,6 +44,8 @@
             <li>Text</li>
           </ul>
         </div>
+
+        <p class="description">Notes</p>
 
         <div class="project-note">
           <p>This is a note</p>
@@ -63,7 +67,7 @@
         <label>Project Name</label>
         <input id="project-name">
         <label>Due Date</label>
-        <input type="date" id="date">
+        <input type="date" id="date" required pattern="\d{2}-\d{2}-\d{2}">
         <button class="task-btn">&#43; add new task</button>
         <ul class="task-list" id="task-list"></ul>
         <label>Add a note</label>
