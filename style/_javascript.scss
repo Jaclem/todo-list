@@ -20,7 +20,27 @@
     padding: 15px;
   }
 
-  div {
+  .project-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      color: rgb(211, 211, 211);
+      font-family: 'Marcellus', serif;
+      letter-spacing: 1px;
+      padding: 15px;
+    }
+  }
+
+  .project-todos {
+    background-color: #353535;
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .project-note {
+    color: rgb(211, 211, 211);
     background-color: #353535;
     padding: 20px;
     margin: 10px;

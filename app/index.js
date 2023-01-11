@@ -26,6 +26,7 @@ const app = (() => {
 
   return {
     taskBtn,
+    modal,
     ul
   }
 
@@ -62,6 +63,8 @@ function addTask() {
   });
 }
 
+// function that grabs all of the information given on the modal screen and passes it
+// to the Project Class as well as runs the Class method
 function createProject() {
   const projectName = document.getElementById('project-name');
   const date = document.getElementById('date');
@@ -74,27 +77,49 @@ function createProject() {
     arr.push(item.innerHTML);
   });
 
+  app.modal.classList.add('visibility');
   new Project(projectName.value, date.value, note.value, arr);
+  (new Project).addProjectToBoard();
 }
 
+// project class that takes all information given when the createBtn is clicked
 class Project {
   constructor(name, date, note, tasks) {
     this.name = name;
     this.date = date;
     this.note = note;
     this.tasks = tasks;
+  }
 
-    console.log(this.name, this.date, this.note, this.tasks);
+  addProjectToBoard() {
+    factory(this.name, this.date, this.note, this.tasks);
+    console.log('working?');
   }
 }
 
-const factory = (taskItems) => {
-  const ul = document.createElement('ul');
-  const listItem = document.createElement('li');
+// Factory function that will be used to create new projects on home page
+const factory = (name, date, note, tasks) => {
+  name,
+  date,
+  note,
+  tasks
 
-  taskItems = taskItems;
+  const projectHeader = document.querySelector('.add-new-header');
+  const projectContainer = document.createElement('div');
+  const projectInfo = document.createElement('div');
+  const projectTodos = document.createElement('div');  
+  const projectNotes = document.createElement('div');
 
-  addTask.taskcontainer.append(ul);
+
+  const header = document.createElement('h1');
+  const dateText = document.createElement('p');
+
+  projectContainer.className = 'projects';
+  projectInfo.className = 'project-info';
+  projectTodos.className = 'project-todos';
+  projectNotes.className = 'project-note';
+
+  projectHeader.after(projectContainer);
 
 }
 
