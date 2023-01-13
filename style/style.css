@@ -54,6 +54,12 @@ section .add-new-header {
   height: 150px;
   width: 60%;
 }
+section .add-new-header::after {
+  content: "";
+  height: 1px;
+  width: 100%;
+  background-color: rgb(141, 141, 141);
+}
 section .add-new-header h1 {
   color: rgb(211, 211, 211);
   font-size: 25px;
@@ -86,12 +92,6 @@ section .add-new-header p {
   letter-spacing: 1px;
   font-weight: bold;
 }
-section .add-new-header::after {
-  content: "";
-  height: 1px;
-  width: 100%;
-  background-color: rgb(141, 141, 141);
-}
 
 .projects {
   display: flex;
@@ -104,6 +104,7 @@ section .add-new-header::after {
   border-radius: 5px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
+  cursor: pointer;
 }
 .projects h1 {
   color: rgb(211, 211, 211);
@@ -236,4 +237,13 @@ section .add-new-header::after {
 .checkbox {
   width: 300px;
   padding: 5px;
+}
+
+.unhidden {
+  height: auto;
+  overflow: visible;
+}
+
+.closed {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

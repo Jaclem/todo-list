@@ -5,6 +5,8 @@ const app = (() => {
   const createBtn = document.getElementById('create');
   const taskBtn = document.querySelector('.task-btn');
   const ul = document.getElementById('task-list');
+  let projList = [];
+  
 
   addBtn.addEventListener('click', () => {
     clearScreen();
@@ -18,6 +20,7 @@ const app = (() => {
   createBtn.addEventListener('click', (e) => {
     e.preventDefault();
     createProject();
+    appendProjects();
   });
 
   taskBtn.addEventListener('click', (e) => {
@@ -25,10 +28,34 @@ const app = (() => {
     addTask();
   });
 
+
+  projList.forEach(project => {
+    project.addEventListener('click', (e) => {
+      const target = e.target.nextElementSibling;
+      // tries to add conditions and if there is an error it just returns
+      try {
+        if(target.classList.contains('closed')){
+          target.classList.remove('closed');
+          target.classList.add('open');
+          console.log('clicked');
+        } else if(target.classList.contains('open')) {
+          target.classList.remove('open');
+          target.classList.add('closed');
+        } 
+      } catch(err) {
+        if (err instanceof TypeError) {
+          return;
+        }
+      }
+    });
+  });
+  
+
   return {
     taskBtn,
     modal,
-    ul
+    ul,
+    projList
   }
 
 })();
@@ -106,6 +133,7 @@ const factory = (name, date, note, tasks) => {
 
   const projectHeader = document.querySelector('.add-new-header');
   const projectContainer = document.createElement('div');
+  const closedProj = document.createElement('div');
   const projectInfo = document.createElement('div');
   const projectTodos = document.createElement('div');  
   const projectNotes = document.createElement('div');
@@ -125,6 +153,8 @@ const factory = (name, date, note, tasks) => {
   description1.className = 'description';
   description2.className = 'description';
 
+  closedProj.className = 'closed';
+
   const ul = document.createElement('ul');
 
   projectContainer.className = 'projects';
@@ -132,8 +162,8 @@ const factory = (name, date, note, tasks) => {
   projectTodos.className = 'project-todos';
   projectNotes.className = 'project-note';
 
-  projectContainer.append(projectInfo, projectTodos, projectNotes);
-  projectInfo.after(description1);
+  closedProj.append(description1, projectTodos, projectNotes);
+  projectContainer.append(projectInfo, closedProj);
   projectTodos.after(description2);
   projectInfo.append(header, dateText);
   
@@ -150,8 +180,6 @@ const factory = (name, date, note, tasks) => {
   noteTag.append(note);
 
   projectNotes.append(noteTag);
-
-
   projectHeader.after(projectContainer);
 }
 
@@ -170,4 +198,39 @@ function clearScreen() {
   });
 
   noteMessage.value = '';
+}
+
+// function testFunction() {
+//   const taskContainer = document.createElement('div');
+//   const taskLabel = document.createElement('label');
+//   const taskInput = document.createElement('input');
+//   const addTask = document.createElement('button');
+
+//   taskContainer.id = 'task-container';
+//   taskLabel.textContent = 'New Task';
+//   addTask.textContent = 'Add';
+//   taskInput.id = 'task-input';
+
+//   taskContainer.classList.add('task-container');
+
+//   taskContainer.append(taskLabel, taskInput, addTask);
+//   app.taskBtn.after(taskContainer);
+
+//   // listens to add button click and appends a list item to it
+//   addTask.addEventListener('click', (e) => {
+//     const listItem = document.createElement('li');
+
+//     e.preventDefault();
+
+//     listItem.className = 'checkbox';
+//     listItem.textContent = taskInput.value;
+    
+//     app.ul.append(listItem);
+//     taskContainer.remove();
+//   });
+// }
+
+const appendProjects = () => {
+  const projects = document.querySelector('.projects');
+  app.projList.push(projects);
 }

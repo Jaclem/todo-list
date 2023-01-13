@@ -26,6 +26,15 @@ section {
     height: 150px;
     width: 60%;
 
+    // underline style border
+    &::after {
+      content: '';
+      height: 1px;
+      width: 100%;
+      background-color: rgb(141, 141, 141);
+      // border: 1px solid white;
+    }
+
     h1 {
       color: rgb(211, 211, 211);
       font-size: 25px;
@@ -63,17 +72,12 @@ section {
       letter-spacing: 1px;
       font-weight: bold;
     }
+
+    
     
   }
 
-  // underline style border
-  .add-new-header::after {
-    content: '';
-    height: 1px;
-    width: 100%;
-    background-color: rgb(141, 141, 141);
-    // border: 1px solid white;
-  }
+
 }
 
 
