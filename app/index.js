@@ -4,9 +4,7 @@ const app = (() => {
   const exitModal = document.getElementById('exit-modal');
   const createBtn = document.getElementById('create');
   const taskBtn = document.querySelector('.task-btn');
-  const ul = document.getElementById('task-list');
-  let projList = [];
-  
+  const ul = document.getElementById('task-list');  
 
   addBtn.addEventListener('click', () => {
     clearScreen();
@@ -28,34 +26,10 @@ const app = (() => {
     addTask();
   });
 
-
-  projList.forEach(project => {
-    project.addEventListener('click', (e) => {
-      const target = e.target.nextElementSibling;
-      // tries to add conditions and if there is an error it just returns
-      try {
-        if(target.classList.contains('closed')){
-          target.classList.remove('closed');
-          target.classList.add('open');
-          console.log('clicked');
-        } else if(target.classList.contains('open')) {
-          target.classList.remove('open');
-          target.classList.add('closed');
-        } 
-      } catch(err) {
-        if (err instanceof TypeError) {
-          return;
-        }
-      }
-    });
-  });
-  
-
   return {
     taskBtn,
     modal,
-    ul,
-    projList
+    ul
   }
 
 })();
@@ -232,5 +206,26 @@ function clearScreen() {
 
 const appendProjects = () => {
   const projects = document.querySelector('.projects');
-  app.projList.push(projects);
+  let projList = [];
+  projList.push(projects);
+
+  projList.forEach(project => {
+    project.addEventListener('click', (e) => {
+      const target = e.target.nextElementSibling;
+      // tries to add conditions and if there is an error it just returns
+      try {
+        if(target.classList.contains('closed')){
+          target.classList.remove('closed');
+          target.classList.add('open');
+        } else if(target.classList.contains('open')) {
+          target.classList.remove('open');
+          target.classList.add('closed');
+        } 
+      } catch(err) {
+        if (err instanceof TypeError) {
+          return;
+        }
+      }
+    });
+  });
 }
