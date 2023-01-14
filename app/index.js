@@ -18,7 +18,7 @@ const app = (() => {
   createBtn.addEventListener('click', (e) => {
     e.preventDefault();
     createProject();
-    appendProjects();
+    openProjectHeader();
   });
 
   taskBtn.addEventListener('click', (e) => {
@@ -111,6 +111,9 @@ const factory = (name, date, note, tasks) => {
   const projectInfo = document.createElement('div');
   const projectTodos = document.createElement('div');  
   const projectNotes = document.createElement('div');
+  const editContainer = document.createElement('div');
+  const editInput = document.createElement('input');
+  const editBtn = document.createElement('button');
 
   const header = document.createElement('h1');
   const dateText = document.createElement('p');
@@ -123,13 +126,23 @@ const factory = (name, date, note, tasks) => {
 
   description1.textContent = 'To-Do\'s';
   description2.textContent = 'Notes';
+  editBtn.textContent = '+';
 
   description1.className = 'description';
   description2.className = 'description';
-
+  editContainer.className = 'edit';
+  editInput.className = 'edit-input';
+  editBtn.className = 'edit-btn';
   closedProj.className = 'closed';
 
+  closedProj.id = 'closed';
+  editContainer.id = 'edit';
+  editInput.id = 'edit-input';
+  editBtn.id = 'edit-btn';
+
   const ul = document.createElement('ul');
+
+  ul.id = 'todo-items';
 
   projectContainer.className = 'projects';
   projectInfo.className = 'project-info';
@@ -138,8 +151,9 @@ const factory = (name, date, note, tasks) => {
 
   closedProj.append(description1, projectTodos, projectNotes);
   projectContainer.append(projectInfo, closedProj);
-  projectTodos.after(description2);
+  projectTodos.after(editContainer, description2);
   projectInfo.append(header, dateText);
+  editContainer.append(editInput, editBtn);
   
   tasks.forEach(task => {
     const li = document.createElement('li');
@@ -149,7 +163,8 @@ const factory = (name, date, note, tasks) => {
   
   projectTodos.append(ul);
 
-  const noteTag = document.createElement('p');
+  const noteTag = document.createElement('textarea');
+  noteTag.className = 'note-text';
 
   noteTag.append(note);
 
@@ -204,10 +219,13 @@ function clearScreen() {
 //   });
 // }
 
-const appendProjects = () => {
+const openProjectHeader = () => {
   const projects = document.querySelector('.projects');
+  const editBtns = document.querySelector('.edit-btn');
   let projList = [];
+  let edits = [];
   projList.push(projects);
+  edits.push(editBtns);
 
   projList.forEach(project => {
     project.addEventListener('click', (e) => {
@@ -226,6 +244,18 @@ const appendProjects = () => {
           return;
         }
       }
+    });
+  });
+
+  edits.forEach(editBtn => {
+    editBtn.addEventListener('click', () => {
+      const edit = document.getElementById('edit-input');
+      const todoList = document.getElementById('todo-items');
+      const liEl = document.createElement('li');
+
+      liEl.append(edit.value);
+      todoList.append(liEl);
+      edit.value = '';
     });
   });
 }
