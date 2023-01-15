@@ -18,7 +18,6 @@ const app = (() => {
   createBtn.addEventListener('click', (e) => {
     e.preventDefault();
     createProject();
-    openProjectHeader();
   });
 
   taskBtn.addEventListener('click', (e) => {
@@ -26,12 +25,17 @@ const app = (() => {
     addTask();
   });
 
+  if(JSON.parse(localStorage.getItem('userProjects')) !== null){
+    refreshEntries();
+  }
+  
+  openProjectHeader();
+
   return {
     taskBtn,
     modal,
     ul
   }
-
 })();
 
 // function that creates a container, input, and button when add new task is clicked
@@ -81,7 +85,17 @@ function createProject() {
 
   app.modal.classList.add('visibility');
   const newProj = new Project(projectName.value, date.value, note.value, arr);
-  newProj.addProjectToBoard();
+
+  let new_project = JSON.stringify(newProj);
+
+  if(localStorage.getItem('userProjects') == null) {
+    localStorage.setItem('userProjects', '[]');
+  }
+
+  let old_project = JSON.parse(localStorage.getItem('userProjects'));
+  old_project.push(new_project);
+  localStorage.setItem('userProjects', JSON.stringify(old_project));
+  factory(newProj);
 }
 
 // project class that takes all information given when the createBtn is clicked
@@ -92,18 +106,15 @@ class Project {
     this.note = note;
     this.tasks = tasks;
   }
-
-  addProjectToBoard = () => {
-    factory(this.name, this.date, this.note, this.tasks);
-  }
 }
 
 // Factory function that will be used to create new projects on home page
-const factory = (name, date, note, tasks) => {
-  name,
-  date,
-  note,
-  tasks
+function factory(project) {
+  let name = project.name;
+  let date = project.date;
+  let note = project.note;
+  let tasks = project.tasks;
+
 
   const projectHeader = document.querySelector('.add-new-header');
   const projectContainer = document.createElement('div');
@@ -169,8 +180,9 @@ const factory = (name, date, note, tasks) => {
   noteTag.append(note);
 
   projectNotes.append(noteTag);
-  projectHeader.after(projectContainer);
+  projectHeader.after(projectContainer);  
 }
+
 
 // Clears the add project form from previously entered data
 function clearScreen() {
@@ -189,45 +201,12 @@ function clearScreen() {
   noteMessage.value = '';
 }
 
-// function testFunction() {
-//   const taskContainer = document.createElement('div');
-//   const taskLabel = document.createElement('label');
-//   const taskInput = document.createElement('input');
-//   const addTask = document.createElement('button');
+// opens and closes the projects when clicked as well as allows you to edit existing information
+function openProjectHeader() {
+  const projects = document.querySelectorAll('.projects');
+  const editBtns = document.querySelectorAll('.edit-btn');
 
-//   taskContainer.id = 'task-container';
-//   taskLabel.textContent = 'New Task';
-//   addTask.textContent = 'Add';
-//   taskInput.id = 'task-input';
-
-//   taskContainer.classList.add('task-container');
-
-//   taskContainer.append(taskLabel, taskInput, addTask);
-//   app.taskBtn.after(taskContainer);
-
-//   // listens to add button click and appends a list item to it
-//   addTask.addEventListener('click', (e) => {
-//     const listItem = document.createElement('li');
-
-//     e.preventDefault();
-
-//     listItem.className = 'checkbox';
-//     listItem.textContent = taskInput.value;
-    
-//     app.ul.append(listItem);
-//     taskContainer.remove();
-//   });
-// }
-
-const openProjectHeader = () => {
-  const projects = document.querySelector('.projects');
-  const editBtns = document.querySelector('.edit-btn');
-  let projList = [];
-  let edits = [];
-  projList.push(projects);
-  edits.push(editBtns);
-
-  projList.forEach(project => {
+  projects.forEach(project => {
     project.addEventListener('click', (e) => {
       const target = e.target.nextElementSibling;
       // tries to add conditions and if there is an error it just returns
@@ -247,8 +226,8 @@ const openProjectHeader = () => {
     });
   });
 
-  edits.forEach(editBtn => {
-    editBtn.addEventListener('click', () => {
+  editBtns.forEach(edit => {
+    edit.addEventListener('click', () => {
       const edit = document.getElementById('edit-input');
       const todoList = document.getElementById('todo-items');
       const liEl = document.createElement('li');
@@ -259,3 +238,15 @@ const openProjectHeader = () => {
     });
   });
 }
+
+function refreshEntries() {
+  let project_deserialized = JSON.parse(localStorage.getItem('userProjects'));
+
+  project_deserialized.forEach(project => {
+    let new_project = JSON.parse(project);
+
+    factory(new_project);
+  });
+}
+
+
