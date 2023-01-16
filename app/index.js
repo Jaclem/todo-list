@@ -30,6 +30,7 @@ const app = (() => {
   }
   
   openProjectHeader();
+  editContents();
 
   return {
     taskBtn,
@@ -204,7 +205,6 @@ function clearScreen() {
 // opens and closes the projects when clicked as well as allows you to edit existing information
 function openProjectHeader() {
   const projects = document.querySelectorAll('.projects');
-  const editBtns = document.querySelectorAll('.edit-btn');
 
   projects.forEach(project => {
     project.addEventListener('click', (e) => {
@@ -225,18 +225,63 @@ function openProjectHeader() {
       }
     });
   });
+}
+
+function editContents() {
+  const projects = document.querySelectorAll('.projects');
+  const editBtns = document.querySelectorAll('.edit-btn');
+  let listItem = JSON.parse(localStorage.getItem('userProjects'));
+  let nameToFind = [];
+  let boolean = false;
 
   editBtns.forEach(edit => {
-    edit.addEventListener('click', () => {
+    edit.addEventListener('click', (e) => {
       const edit = document.getElementById('edit-input');
       const todoList = document.getElementById('todo-items');
       const liEl = document.createElement('li');
 
+      console.log(edit.value);
+
       liEl.append(edit.value);
       todoList.append(liEl);
-      edit.value = '';
+
+      // showing all items in local storage
+      listItem.forEach(project => {
+        let new_project = JSON.parse(project);
+        
+        if(new_project.name == nameToFind[0]) {
+          console.log(new_project);
+          new_project.tasks.push(edit.value);
+          console.log(JSON.stringify(new_project));
+          localStorage.setItem('tasks', JSON.stringify([new_project]));
+        }
+      });
+
+      // let new_project = JSON.stringify(newProj);
+
+      // if(localStorage.getItem('userProjects') == null) {
+      //   localStorage.setItem('userProjects', '[]');
+      // }
+    
+      // let old_project = JSON.parse(localStorage.getItem('userProjects'));
+      // old_project.push(new_project);
+      // localStorage.setItem('userProjects', JSON.stringify(old_project));
+      // edit.value = '';
     });
   });
+
+  projects.forEach(project => {
+    project.addEventListener('click', (e) => {
+      if(!boolean){
+        nameToFind.push(e.target.childNodes[0].textContent);
+        boolean = true;
+      } else if (boolean) {
+
+      }
+    });
+  });
+
+
 }
 
 function refreshEntries() {
@@ -247,6 +292,8 @@ function refreshEntries() {
 
     factory(new_project);
   });
+
+
 }
 
 
